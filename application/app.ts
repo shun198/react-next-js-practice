@@ -6,6 +6,12 @@ app.get('/', (_req: express.Request, res: express.Response) => {
   res.send('Hello World!')
 })
 
+app.use((req: express.Request, res: express.Response, next) => {
+    console.log('In the middleware')
+    next();
+  }
+)
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
