@@ -1,27 +1,14 @@
-prepare:
-	docker-compose up -d --build
+RUN_NPM = npm run
+FRONTEND_PATH = --prefix application
 
-up:
-	docker-compose up -d
+install:
+	npm install $(FRONTEND_PATH)
 
-build:
-	docker-compose build
-
-down:
-	docker-compose down
+format:
+	$(RUN_NPM) format $(FRONTEND_PATH)
 
 run:
-	docker-compose exec app npm run start:dev
+	$(RUN_NPM) dev $(FRONTEND_PATH)
 
-migrate:
-	docker-compose exec app npx prisma migrate dev
-
-studio:
-	docker-compose exec app npx prisma studio
-
-lint:
-	docker-compose exec app npm run lint
-
-seed:
-	docker-compose exec app npx prisma db seed
-
+build:
+	$(RUN_NPM) build $(FRONTEND_PATH)
